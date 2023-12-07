@@ -10,10 +10,10 @@ function torsion_to_nullpoint(P,Q,R)
     a1 := P[1]; a2 := Q[1]; a3 := R[1];
     s1 := (a1-a3)*(a2-a3); s2 := (a3-a2)*(a1-a2); s3 := (a2-a1)*(a3-a1);
     r1 := Sqrt(-s2*s3); r2 := Sqrt(s3*s1); r3 := Sqrt(s1*s2);
-    return [r1,r2,r3];
+    return [r1,r2,r3,0];
 end function;
 
-// For given theta null-points null_j on tau_j, return the theta null-point on Omega = diag(tau_1,tau_2,tau_3).
+// For given theta null-points on tau_j, return the theta null-point on Omega = diag(tau_1,tau_2,tau_3).
 function product_of_nullpoints(null1,null2,null3)
     prod_null := [K!0: j in [1..64]];
     for j1,j2,j3 in [1..3] do
@@ -26,7 +26,7 @@ function product_of_nullpoints(null1,null2,null3)
     return prod_null;
 end function;
 
-// For given lists corresonding to a symplectic matrix M and a theta null-point, return the theta null-point transformed by M.
+// For a given theta null-point and lists corresonding to a symplectic matrix, return the transformed theta null-point by the matrix.
 function transform_nullpoint(null,index_list,signs_list)
     trans_null := [K!0: j in [1..64]];
     for num in [0,1,2,3,4,5,6,7,8,10,12,14,16,17,20,21,24,27,28,31,32,33,34,35,40,42,45,47,48,49,54,55,56,59,61,62] do
